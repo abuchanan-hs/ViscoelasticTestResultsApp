@@ -26,10 +26,10 @@ module.exports.adapters = {
 		host			: 'localhost',
 		user			: '',
 		password	: '',
-		database	: 'hemosonicstrials',
+		database	: 'hs_viscoelastic_tests',
 		
 		schema		: true
-	}
+	},
 	
 	// Persistent adapter for DEVELOPMENT ONLY
   // (data is preserved when the server shuts down)

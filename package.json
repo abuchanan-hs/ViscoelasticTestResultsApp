@@ -2,7 +2,7 @@
   "name": "trialsApp",
   "private": true,
   "version": "0.0.0",
-  "description": "HemoSonics Test Tracking and Reporting",
+  "description": "HemoSonics Viscoelastic Test Reporting",
   "dependencies": {
     "sails": "0.9.9",
     "grunt": "0.4.1",
