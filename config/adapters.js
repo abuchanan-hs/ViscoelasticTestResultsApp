@@ -16,9 +16,22 @@ module.exports.adapters = {
 
   // If you leave the adapter config unspecified 
   // in a model definition, 'default' will be used.
-  'default': 'disk',
+  'default': 'mongo',
 
-  // Persistent adapter for DEVELOPMENT ONLY
+	// default to these mongo settings, since ware aren't setting
+	//	a user or password at this point its ok to be in here.
+	// Production settings with private information should go in locals.js
+	mongo: {
+		module		: 'sails-mongo',
+		host			: 'localhost',
+		user			: '',
+		password	: '',
+		database	: 'hemosonicstrials',
+		
+		schema		: true
+	}
+	
+	// Persistent adapter for DEVELOPMENT ONLY
   // (data is preserved when the server shuts down)
   disk: {
     module: 'sails-disk'
