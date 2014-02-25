@@ -36,6 +36,54 @@
 
   <body>
 	  
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+			  	<a href="/"><img src="/images/hemosonics_blood_drop_logo.png" class="navbar-brand"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <% if (session.authenticated) { %>
+					  	<li><a class="navbar-brand" href="#">In Progress</a></li>
+					  	<li><a class="navbar-brand" href="#">Completed</a></li>
+					  	<li><a class="navbar-brand" href="#">Discarded</a></li>
+					  	<li><a class="navbar-brand" href="#">Protocols</a></li>
+					  	<li><a class="navbar-brand" href="#">Studies</a></li>
+					  	<li><a class="navbar-brand" href="#">Donors</a></li>
+            <% } %>
+					</ul>
+          <% if (session.authenticated) { %>
+						<div class="navbar-right">
+							<ul class="nav navbar-nav">
+			          <% if (session.authenticated && session.User.admin) { %>
+  		            <li><a href="/user">User Administration</a></li>
+								<% } %>
+ 	              <li class="active"><a href="/user/show/<%= session.User.id %>"><%= session.User.name %> </a> </li>
+							</ul>
+}            <a class="navbar-btn btn btn-default" href="/session/destroy">sign-out</a>
+						</div>	
+          <% } %>
+          <% if (!session.authenticated) { %>
+            <form class="navbar-form navbar-right" action="/session/create">
+            <div class="form-group">
+              <input type="text" placeholder="Email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+		<!--		
 	  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		  <div class="container">
 		  	<a href="/"><img src="/images/hemosonics_blood_drop_logo.png" class="navbar-brand"/></a>
@@ -48,6 +96,7 @@
 			<button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
 	  	</div>
   	</div>
+		-->
 			  
     <%- body %>
 	

@@ -15,6 +15,7 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+
 module.exports = {
 
 	'new': function(req, res) {
@@ -22,8 +23,16 @@ module.exports = {
 	},
 
 	create: function(req, res, next) {
+		// marshall the form data to prevent html injection
+		var userObj = {
+			name: req.param('name'),
+			email: req.param('email'),
+			password: req.param('password'),
+			confirmation: req.param('confirmation')
+		};
+		
 		// Create a User with the params sent from the sign-up form --> new.ejs
-		User.create(req.params.all(), function userCreated(err, user) {
+		User.create(userObj, function userCreated(err, user) {
 
 			// If there's an error
 			if (err) {
@@ -38,8 +47,12 @@ module.exports = {
 				//return next(err);
 			}
 
-			// After successfully creating the new user redirect to the show action
-			//res.json(user);
+			// After successfully creating the new user 
+			// Log the user in
+			req.session.authenticated = true;
+			req.session.User = user;
+
+			// redirect to the show action
 			res.redirect('/user/show/'+user.id);
 		});
 	},
@@ -74,8 +87,19 @@ module.exports = {
 	
 	// process the info from the edit view
 	update: function(req, res, next) {
+		// marshall the data coming from req.params.all or else	its possible for html
+		// injection in the browser to change	user proprites even if they aren't admin.
+		var userObj = {
+			name: req.param('name'),
+			email: req.param('email'),
+			admin: false
+		};
+		// admin can only be changed by admin users
+		if(req.session.User.admin) {
+			userObj.admin = req.param('admin');
+		}
 		var uid = req.param('id');
-		User.update(uid, req.params.all(), function userUpdate(err) {
+		User.update(uid, userObj, function userUpdate(err) {
 			if (err) {
 				return res.redirect('/user/edit/' + uid);
 			}

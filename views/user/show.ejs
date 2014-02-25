@@ -1,6 +1,10 @@
 <div class='container'>
 	<!-- %= causes all html to escape, to prevent embedded scripting attacks -->
 	<h1><%= user.name %></h1>
+	<% if (user.admin) { %>
+		<b>Administrator</b>
+	<% } %>
+	
 	<hr/>
 	<h3>contact: <%- user.email %></h3>
 	

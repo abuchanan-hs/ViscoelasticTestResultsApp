@@ -5,6 +5,7 @@
 			<th>ID</th>
 			<th>Name</th>
 			<th>Email</th>
+			<th>Role</th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -15,6 +16,7 @@
 				<td><%= user.id %></td>
 				<td><%= user.name %></td>
 				<td><%= user.email %></td>
+				<td><% if(user.admin) { %> Administrator <% } %></td>
 				<td><a href="/user/show/<%= user.id %>" class="btn btn-sm btn-primary">Show</a></td>
 				<td><a href="/user/edit/<%= user.id %>" class="btn btn-sm btn-warning">Edit</a></td>
 				

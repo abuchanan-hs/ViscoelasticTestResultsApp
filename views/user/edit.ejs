@@ -3,6 +3,11 @@
 	
 	<input value="<%= user.name %>" name="name" id="name" type="text" class="form-control"/>
 	<input value="<%= user.email %>" name="email" id="email" type="text" class="form-control"/>
+	<% if (session.authenticated && session.User.admin) { %>
+		<input type="hidden" name="admin" value="unchecked">
+		
+		<label class="checkbox"><input type="checkbox" name="admin" <% if(user.admin){ %> checked="checked" <% } %>> Administrator</label>
+	<% } %> 
 
 	<input type="submit" value="Proceed" class="btn btn-lg btn-primary btn-block"/>
 	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
