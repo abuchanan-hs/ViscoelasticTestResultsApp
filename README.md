@@ -1,4 +1,4 @@
-# Viscoelastic Test Results App
-### HemoSonics Test results tracking and reporting application for all executions of the Global Hemostasis Analyzer, starting with Alpha and continue onwards.
+# Test Results Web App
+### Evaluation of web front end for test results reporting - started, but never completed.
 
 Created using Sails.js
